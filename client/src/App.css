@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.userView {
+  border: 2px solid black;
+}
+
+.category-header, .item-input-container, .item-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-input-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 10px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 40px;
+  margin: 0 auto;
+  border: 2px solid black;
+  text-align: left;
+  max-width: 500px;
+}
+
+.category-header {
+  margin-bottom: 10px;
+}
+
+.category-container {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.item-input-container {
+  margin: 20px 0;
+}
+
+.item-container {
+  margin: 10px 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.user-form {
+  width: 250px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+} 
+
+.user-form .form-group {
+  align-items: center;
+  margin: 0;
+}
+
+.user-form .input-group {
+  align-items: center;
+}
+
+.user-form .input-group label {
+  margin: 0;
+}
+
+#scoreValue {
+  align-items: baseline;
+  width: 80px;
+}
+
+.category-score {
+  width: auto;
+  float: right;
+}
+
+.clearDiv {
+  clear: both;
+}

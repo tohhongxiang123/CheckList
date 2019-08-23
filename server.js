@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
@@ -14,6 +15,7 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useFindAndModify: false },
 });
 
 // MIDDLEWARE
+app.use(express.static(path.join(__dirname, "client", "build")));
 app.use(express.json());
 app.use(cors());
 
@@ -22,6 +24,9 @@ app.use('/api/users', authRoutes);
 app.use('/api/checklist', checkListRoutes)
 
 // INITIALISE SERVER
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(PORT, (req, res) => {
     console.log(`Server listening on port ${PORT}`);
 });

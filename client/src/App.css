@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+/* dont display stupid number input spinner box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .userView {
   border: 2px solid black;
 }
@@ -29,6 +41,9 @@
 }
 
 .category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 10px;
 }
 
@@ -59,10 +74,12 @@
 .user-form .form-group {
   align-items: center;
   margin: 0;
+  display: flex;
 }
 
 .user-form .input-group {
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .user-form .input-group label {
@@ -71,7 +88,7 @@
 
 #scoreValue {
   align-items: baseline;
-  width: 80px;
+  width: 60px;
 }
 
 .category-score {

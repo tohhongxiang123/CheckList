@@ -30,14 +30,14 @@ export default class UserItem extends React.Component {
             <div className="item-container">
                 <p>{this.props.itemDesc}</p>
                 <Form className="user-form">
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Check
                         id="na-checkbox"
                         onChange={this.props.changeValue}
                         required
                         label="N.A."
                         />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group controlId="scoreValue">
                         <InputGroup>
                             <Form.Label className="mr-2"> Score </Form.Label>

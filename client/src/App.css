@@ -58,12 +58,13 @@ input[type=number] {
 
 .item-container {
   margin: 10px 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 20px;
   align-items: baseline;
 }
 
 .user-form {
-  width: 250px;
   display: grid;
   align-items: center;
   grid-template-columns: 1fr;
@@ -98,4 +99,23 @@ input[type=number] {
 
 .clearDiv {
   clear: both;
+}
+
+.reasons-container {
+  margin-top: 10px;
+}
+
+.reasons-container > p {
+  margin-bottom: 0;
+}
+
+.demerit-reason-form {
+  display: flex;
+}
+
+.reason-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
 }

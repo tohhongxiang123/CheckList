@@ -55,32 +55,26 @@ export default class UserCategoryForm extends React.Component {
                     <UserItem key={item._id} itemDesc={item.itemDesc} handleChange={this.props.handleChange} itemMaxValue={item.itemMaxValue} category={this.props.category}/>
                 ))}
                 { this.state.reasons.length ? (
-                    <>
-                    <h4>Reasons for demerit</h4>
+                    <div className="reasons-container">
+                    <p><strong>Reasons for demerit</strong></p>
                     {this.state.reasons.map((reason, index) => (
                         <div className="reason-container">
                             <p key={index}>{reason}</p> 
-                            <Button variant="danger" data-index={index} onClick={this.removeReason}>Remove</Button>
+                            <Button variant="danger" data-index={index} onClick={this.removeReason}>&times;</Button>
                         </div>
                     ))}
-                    </>
+                    </div>
                 ) : null}
                 {this.props.categoryScore < this.props.categoryMaxScore ? (
-                    <Form onSubmit={this.handleSubmit}>
-                        <Row>
-                            <Col>
-                            <Form.Control type="text" placeholder="Enter reason" value={this.state.reason} onChange={this.handleChange} aria-label="Reason" />
-                            </Col>
-                            <Col>
-                            <Button type="submit">Submit</Button>
-                            </Col>
-                        </Row>
+                    <Form className="demerit-reason-form" onSubmit={this.handleSubmit}>
+                        <Form.Control type="text" placeholder="Enter reason" value={this.state.reason} onChange={this.handleChange} aria-label="Reason" />
+                        <Button type="submit">Submit</Button>
                     </Form>
                     
                 ) : null}
                
                     
-     
+                <hr />
                 <div className="clearDiv"></div>
             </div>
         )

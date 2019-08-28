@@ -7,8 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 export default class UserCategoryForm extends React.Component {
     state = {
-        reason: "",
-        reasons: []
+        reason: ""
     }
 
     handleChange = (e) => {
@@ -17,29 +16,17 @@ export default class UserCategoryForm extends React.Component {
         })
     }
 
-    handleSubmit = (e) => {
+    addReason = (e) => {
         e.preventDefault();
         const currentReason = this.state.reason;
-        if (currentReason.trim()) {
-            let reasonsCopy = [...this.state.reasons];
-            reasonsCopy.push(currentReason);
-            this.setState({
-                reason: "",
-                reasons: reasonsCopy
-            });
-        }
-        
+        this.props.addReason(currentReason, this.props.category);
+        this.setState({
+            reason: ""
+        })
     }
 
     removeReason = (e) => {
-        let indexToRemove = e.target.getAttribute('data-index');
-        let reasonsCopy = [...this.state.reasons];
-        console.log(indexToRemove);
-        reasonsCopy.splice(indexToRemove, 1);
-        console.log(reasonsCopy);
-        this.setState({
-            reasons: reasonsCopy
-        })
+        this.props.removeReason(e.target.getAttribute('data-index'), this.props.category);
     }
 
     render() {
@@ -54,10 +41,10 @@ export default class UserCategoryForm extends React.Component {
                 {this.props.items.map(item => (
                     <UserItem key={item._id} itemDesc={item.itemDesc} handleChange={this.props.handleChange} itemMaxValue={item.itemMaxValue} category={this.props.category}/>
                 ))}
-                { this.state.reasons.length ? (
+                { this.props.reasons && this.props.reasons.length > 0 ? (
                     <div className="reasons-container">
                     <p><strong>Reasons for demerit</strong></p>
-                    {this.state.reasons.map((reason, index) => (
+                    {this.props.reasons.map((reason, index) => (
                         <div className="reason-container">
                             <p key={index}>{reason}</p> 
                             <Button variant="danger" data-index={index} onClick={this.removeReason}>&times;</Button>
@@ -66,7 +53,7 @@ export default class UserCategoryForm extends React.Component {
                     </div>
                 ) : null}
                 {this.props.categoryScore < this.props.categoryMaxScore ? (
-                    <Form className="demerit-reason-form" onSubmit={this.handleSubmit}>
+                    <Form className="demerit-reason-form" onSubmit={this.addReason}>
                         <Form.Control type="text" placeholder="Enter reason" value={this.state.reason} onChange={this.handleChange} aria-label="Reason" />
                         <Button type="submit">Submit</Button>
                     </Form>

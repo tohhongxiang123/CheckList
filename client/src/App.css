@@ -35,7 +35,6 @@ input[type=number] {
   list-style: none;
   padding: 40px;
   margin: 0 auto;
-  border: 2px solid black;
   text-align: left;
   max-width: 500px;
 }
@@ -118,4 +117,10 @@ input[type=number] {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 4px;
+}
+
+.continue-btn {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
 }

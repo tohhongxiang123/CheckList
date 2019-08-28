@@ -16,6 +16,7 @@ class UserView extends React.Component {
     camp: "KC3", 
     cookhouse: "1",
     overallMaxScore: 0,
+    overallScore: 0,
     categoryMaxScores: {},
     step: 1
   };
@@ -80,13 +81,15 @@ class UserView extends React.Component {
     this.calculateScores();
   }
 
-  nextStep = () => {
+  nextStep = (e) => {
+    e.preventDefault();
     this.setState({
       step: this.state.step + 1
     });
   }
 
-  prevStep = () => {
+  prevStep = (e) => {
+    e.preventDefault();
     this.setState({
       step: this.state.step - 1
     });
@@ -178,7 +181,17 @@ handleSelectChange = (e) => {
 
         case 2: 
               return (
-                <ConfirmSubmission categories={this.state.categories} prevStep={this.prevStep} categoryScores={this.state.categoryScores} categoryMaxScores={this.state.categoryMaxScores} categoryReasons={this.state.categoryReasons} cookhouse={this.state.cookhouse} camp={this.state.camp} />
+                <ConfirmSubmission 
+                categories={this.state.categories} 
+                prevStep={this.prevStep} 
+                nextStep={this.nextStep} 
+                categoryScores={this.state.categoryScores} 
+                categoryMaxScores={this.state.categoryMaxScores} 
+                categoryReasons={this.state.categoryReasons} 
+                cookhouse={this.state.cookhouse} 
+                camp={this.state.camp}
+                overallMaxScore={this.state.overallMaxScore}
+                overallScore={this.state.overallScore} />
               )
     }
         

@@ -4,21 +4,32 @@ import Form from 'react-bootstrap/Form'
 
 export default class UserItem extends React.Component {
     state = {
-        score: this.props.itemMaxValue 
+        score: null
+    }
+
+    componentDidMount() {
+        this.setState({
+            score: this.props.itemMaxValue
+        }, () => {
+            this.props.handleChange()
+        });
     }
 
     handleChange = (e) => {
-        let value = parseInt(e.target.value.trimLeft('0'));
-        const max = e.target.getAttribute("max");
-        const min = e.target.getAttribute("min");
+        let value = parseInt(e.target.value);
+        const max = parseInt(e.target.getAttribute("max"));
+        const min = parseInt(e.target.getAttribute("min"));
+        console.log(value, min, max);
         if (isNaN(value)) {
             value = 0;
         }
         if (value > max) {
             value = max;
+            console.log("ABOVCE MAX");
         } 
         if (value < min) {
             value = min;
+            console.log("BELKOW MIN");
         } 
 
         this.setState({
@@ -38,7 +49,8 @@ export default class UserItem extends React.Component {
                             type="number"
                             min="0"
                             max={this.props.itemMaxValue}
-                            defaultValue={this.state.score.toString()}
+                            value={'' + this.state.score} // some weird leading zero fix, https://github.com/facebook/react/issues/9402
+                            defaultValue={this.props.itemMaxValue}
                             aria-describedby="inputGroupAppend"
                             onChange={this.handleChange}
                             />
